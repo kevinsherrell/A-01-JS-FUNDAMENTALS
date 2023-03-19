@@ -167,7 +167,7 @@ console.log("edited user", editedUser);
 
 // 10. Use the spread operator to make a copy of the accomplishments array and store it in a new variable
 const newAccomplishments = [...userGameData.accomplishments];
-console.log("new accomplishments",newAccomplishments);
+console.log("new accomplishments", newAccomplishments);
 
 //  11.Given the object bellow, use object destructuring to get the favorite food value (user.name.favoriteThings.food)
 //  and store it in a variable name food
@@ -181,15 +181,20 @@ var user = {
     },
 };
 
+const {food} = user.favoriteThings;
+console.log("user food", food);
 
 // 12. Once you have grabbed the favorite foods. Destructure the food array to grab only the first 2 values. //
-
+const [pizza, tacos] = food;
+console.log(pizza);
+console.log(tacos);
 
 // 13. use object destructuring and the rest operator to transform the following array into 3 variables: name, age, and food. 
 //    the food variable should have all the array items starting from the third one.
 const data = ['peter', '34', 'apple', 'oranges', 'pizza', 'tacos'];
-
-
+const [name, age, ...rest] = data;
+console.log(name, age, ...rest);
+console.log(rest);
 // 14. use object destructuring to grab the following from the userInfo object:
 // - The user's name and in a constant named userName.
 // - The user's favorite food array and name it favoriteFood.
@@ -207,6 +212,10 @@ const userInfo = {
         },
     },
 };
+
+const { name: userName} = userInfo;
+console.log(userName);
+// come back to this
 
 var fetchData = () => new Promise((resolve, reject) => {
     console.log('fetchingData from imaginary database')
@@ -251,8 +260,19 @@ var fetchData = () => new Promise((resolve, reject) => {
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 15. Call fetchData (which returns a promise) and use the .then()  method to log the value the promise resolves with to the javascript console.
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+fetchData()
+    .then(result=>{
+        console.log(result);
+    })
+    .catch(err=>{
+        console.log(err.message);
+    })
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 16. Call fetchData (which returns a promise) and use the async/await method to log the value the promise resolves with to the javascript console.
+const fetchAsync = async ()=>{
+    const data = await fetchData();
+    console.log(data);
+}
+fetchAsync();
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
