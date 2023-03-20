@@ -212,9 +212,19 @@ const userInfo = {
         },
     },
 };
+// Not sure if the problem was looking for a way to do this with a nested destructuring or multiple variables so I went with multiple variables.
 
-const { name: userName} = userInfo;
-console.log(userName);
+const {name: userName, favorites} = userInfo;
+const {needs, wants} = favorites;
+const {food: favoriteFood} = needs;
+const {things} = wants;
+const [favoriteThing, secondFavoriteThing] = things;
+console.log("username", userName);
+console.log("needs", needs);
+console.log("wants", wants);
+console.log("favorite food",favoriteFood);
+console.log(favoriteThing);
+console.log(secondFavoriteThing);
 // come back to this
 
 var fetchData = () => new Promise((resolve, reject) => {
@@ -261,16 +271,16 @@ var fetchData = () => new Promise((resolve, reject) => {
 // 15. Call fetchData (which returns a promise) and use the .then()  method to log the value the promise resolves with to the javascript console.
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 fetchData()
-    .then(result=>{
+    .then(result => {
         console.log(result);
     })
-    .catch(err=>{
+    .catch(err => {
         console.log(err.message);
     })
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 16. Call fetchData (which returns a promise) and use the async/await method to log the value the promise resolves with to the javascript console.
-const fetchAsync = async ()=>{
+const fetchAsync = async () => {
     const data = await fetchData();
     console.log(data);
 }
